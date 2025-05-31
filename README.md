@@ -64,7 +64,7 @@ Follow these instructions to set up the URDF model locally for development and s
 
    ```bash
    git clone git@github.com:kabilankb/lekiwi_isaacsim.git
-   cd lekiwi-urdf-isaacsim
+   cd lekiwi_isaacsim
    ```
 
 2. **Place URDF in Isaac Sim Assets:**
