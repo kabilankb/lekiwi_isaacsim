@@ -112,7 +112,7 @@ Follow these instructions to set up the URDF model locally for development and s
    ```bash
    ros2 launch urdf_tutorial display.launch.py model:=/absolute/path/to/lekiwi-urdf-isaacsim/urdf/lekiwi.urdf
    ```
-
+![Image](https://github.com/user-attachments/assets/ed895c3b-36ca-43e3-965a-78523df1fa8b)
 ---
 
 ## 📁 Current URDF Models
