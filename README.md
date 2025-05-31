@@ -1,67 +1,162 @@
-# LeKiwi
-<div style="display: flex; justify-content: center; align-items: center; padding: 25px;">
-    <img src="media/sigrobotics-logo.png" height="75" style="background-color: white; padding: 10px;"/>
-    <img src="media/University-of-Illinois-logo.jpg" height="75" style="background-color: white; padding: 10px;"/>
-    <img src="media/hf-logo-with-title.png" height="75" style="background-color: white; padding: 10px;"/>
-    <img src="media/lerobot-logo-light.png" height="75" style="background-color: white; padding: 10px;"/>
-</div>
 
+---
 
-> LeKiwi - Low-Cost Mobile Manipulator | Version 1
+# 🦾 Lekiwi URDF for Isaac Sim
 
-<img src="./media/lekiwi_cad_v1.png" width=300/> <img src="./media/lekiwi_real.jpg" width=300/> 
+This repository provides the **Unified Robot Description Format (URDF)** models for the **Lekiwi robot**, optimized for use within **NVIDIA Isaac Sim**. Our goal is to enable realistic, high-fidelity simulations of the Lekiwi robot for robotics research, development, and testing.
 
-## Step by step tutorial
-1. [Bill of Materials](BOM.md)
-2. [3D Printing](3DPrinting.md)
-3. [Assembly](Assembly.md)
-4. [Get started with LeRobot](https://github.com/huggingface/lerobot/blob/main/examples/11_use_lekiwi.md)
+---
 
-## Hardware Design
-#### Standardized Stacked Base Plates
-- Inspired by the [open robotic platform](https://openroboticplatform.com/designrules), our base plates have 3.5mm diameter holes spaced 20mm apart for standardized mounting
+## 📚 Table of Contents
 
-#### Power
-- (12V version) 12v 5A Li-ion battery
-- (5V version) 65W Laptop power bank
+* [About Lekiwi](#about-lekiwi)
+* [Features](#features)
+* [Getting Started](#getting-started)
 
-> [!TIP]  
-> If this is the first time you build robots please choose the 5V version as it’s a little bit easier to assemble. If you are more experienced and want to lift heavier objects choose the 12V version. If you want to cheapest option possible go for the wired LeKiwi version.
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+  * [Usage in Isaac Sim](#usage-in-isaac-sim)
+  * [Viewing the URDF with ROS 2](#viewing-the-urdf-with-ros-2)
+* [Current URDF Models](#current-urdf-models)
+* [Upcoming Work](#upcoming-work)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
 
-#### Compute
-- Raspberry Pi 5
-- Streaming to a Laptop
+---
 
-#### Drive
-- 3-wheel Kiwi (holonomic) drive with omni wheels
+## 🤖 About Lekiwi
 
-#### Robot Arm
-- [SO-ARM101](https://github.com/TheRobotStudio/SO-ARM100)
+**Lekiwi** is a compact mobile manipulator designed for **indoor navigation** and **precise object manipulation**. This repository provides accurate URDF representations of Lekiwi for seamless integration into simulation environments like **Isaac Sim**.
 
-#### Sensors
-- Workspace rgb camera
-- Wrist rgb camera
+---
 
-## Software Capabilities
-Goals:
-- Teleoperation with controller or laptop WASD + leader arm
-- Data collection pipeline
-- Streaming joint angles and camera feed
+## ✨ Features
 
-## CAD Design
-[Fusion 360 CAD](https://a360.co/4k1P8yO)
+* ✅ **Isaac Sim Compatible**: Designed and tested with NVIDIA Isaac Sim.
+* 🧩 **Modular Design**: Easily modify or extend components.
+* 🔧 **Accurate Kinematics & Dynamics**: Faithful representation of Lekiwi's real-world properties.
+* 🎨 **Visual Meshes Included**: Realistic visuals using `.stl` or `.obj` meshes.
 
-We also provide the [URDF](./URDF/) exported from CAD for simulation.
-## Get In Touch!
+---
 
-Join the project on LeRobot's [Discord server](https://discord.gg/Jtz5TJtb2u) (channel `mobile-so100-arm`)! Let us know if you have any questions, suggestions, or other feedback.
+## 🚀 Getting Started
 
-## Main Contributors
-Thank you to everyone who helped on the project!
+Follow these instructions to set up the URDF model locally for development and simulation.
 
-**CAD Design**: Manav Chandaka, Bhargav Chandaka, Pepijn Kooijmans
+### 🔧 Prerequisites
 
-**Software**: Pepijn Kooijmans, Gloria Wang, Bhargav Chandaka, Advait Patel
-# lekiwi_isaacsim
-# lekiwi_isaacsim
-# isaacsim_lekiwi
+* **NVIDIA Isaac Sim** (See [Isaac Sim Docs](https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/overview.html))
+* **Python 3.x**
+* **ROS 2** (`Humble`, `Iron`, or `Rolling` recommended)
+* **urdf\_tutorial** package:
+
+  ```bash
+  sudo apt install ros-<ros2-distro>-urdf-tutorial
+  ```
+
+---
+
+### 📦 Installation
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/lekiwi/lekiwi-urdf-isaacsim.git
+   cd lekiwi-urdf-isaacsim
+   ```
+
+2. **Place URDF in Isaac Sim Assets:**
+
+   **Recommended (Symbolic Link for Development):**
+
+   ```bash
+   cd ~/.local/share/ov/pkg/isaac_sim-202X.X.X/exts/omni.isaac.examples/omni/isaac/examples/usd_assets/
+   ln -s /absolute/path/to/lekiwi-urdf-isaacsim lekiwi_robot
+   ```
+
+   **Alternative (Direct Copy):**
+
+   ```bash
+   cp -r urdf meshes /path/to/isaac_sim_assets/lekiwi_robot/
+   ```
+
+---
+
+### 🛠️ Usage in Isaac Sim
+
+1. Launch Isaac Sim.
+2. Go to `File -> New Stage`.
+3. Import the URDF:
+
+   * `File -> Import -> URDF`
+   * Navigate to:
+     `omniverse://localhost/NVIDIA/Assets/lekiwi_robot/urdf/lekiwi.urdf`
+   * Select `lekiwi.urdf`
+   * Enable **merge fixed joints** for better performance (optional).
+4. Simulate and interact with the robot in the scene.
+
+---
+
+### 👁️ Viewing the URDF with ROS 2
+
+1. **Source ROS 2:**
+
+   ```bash
+   source /opt/ros/<ros2-distro>/setup.bash
+   ```
+
+2. **Launch URDF in RViz:**
+
+   ```bash
+   ros2 launch urdf_tutorial display.launch.py model:=/absolute/path/to/lekiwi-urdf-isaacsim/urdf/lekiwi.urdf
+   ```
+
+---
+
+## 📁 Current URDF Models
+
+* `urdf/lekiwi.urdf` – Main URDF file for Lekiwi
+* `meshes/` – Visual and collision meshes (`.stl`, `.obj`, etc.)
+
+---
+
+## 🧪 Upcoming Work
+
+* ⚙️ Refined collision meshes
+* 📷 Sensor integration (LiDAR, cameras, IMU)
+* 🔩 Actuator control enhancements (velocity/torque/friction)
+* 🤖 ROS 2 control integration (`ros2_control`)
+* 🌐 Task-specific Isaac Sim environments
+* 📘 Expanded documentation and tutorials
+* 🚀 Simulation performance optimization
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community!
+
+1. Fork the repo
+2. Create a new branch:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+
+   ```bash
+   git commit -m "Add: Description of your feature"
+   ```
+4. Push and open a Pull Request.
+
+Please follow coding standards and include relevant documentation. For major features, open an issue for discussion first.
+
+---
+
+## 📄 License
+
+This project is licensed under the **[MIT License](LICENSE)**. You may modify and use it freely under the terms specified.
+
+---
+
