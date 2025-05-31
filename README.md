@@ -5,6 +5,7 @@
 
 This repository provides the **Unified Robot Description Format (URDF)** models for the **Lekiwi robot**, optimized for use within **NVIDIA Isaac Sim**. Our goal is to enable realistic, high-fidelity simulations of the Lekiwi robot for robotics research, development, and testing.
 
+![Image](https://github.com/user-attachments/assets/d5f6e9d0-4639-4994-b41d-35f78ffdd3ef)
 ---
 
 ## 📚 Table of Contents
