@@ -68,15 +68,9 @@ Follow these instructions to set up the URDF model locally for development and s
    ```
 
 2. **Place URDF in Isaac Sim Assets:**
-
-   **Recommended (Symbolic Link for Development):**
-
-   ```bash
-   cd ~/.local/share/ov/pkg/isaac_sim-202X.X.X/exts/omni.isaac.examples/omni/isaac/examples/usd_assets/
-   ln -s /absolute/path/to/lekiwi-urdf-isaacsim lekiwi_robot
    ```
 
-   **Alternative (Direct Copy):**
+   **Direct Copy:**
 
    ```bash
    cp -r urdf meshes /path/to/isaac_sim_assets/lekiwi_robot/
