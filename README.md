@@ -63,7 +63,7 @@ Follow these instructions to set up the URDF model locally for development and s
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/lekiwi/lekiwi-urdf-isaacsim.git
+   git clone git@github.com:kabilankb/lekiwi_isaacsim.git
    cd lekiwi-urdf-isaacsim
    ```
 
